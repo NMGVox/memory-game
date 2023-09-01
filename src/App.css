@@ -47,3 +47,14 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+.imageGrid {
+	display: grid;
+	height:100vh;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-auto-rows: 1fr;
+}
+
+.albumWrapper {
+	text-align: center;
+}

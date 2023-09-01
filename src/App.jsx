@@ -5,6 +5,7 @@ import './App.css'
 
 function App() {
   const [albumInfo, setAlbumInfo] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   function fetchAlbumInfo() {
     const options = {
@@ -32,16 +33,22 @@ function App() {
 
   useEffect(() => {
     fetchAlbumInfo()
+    setLoading(false);
   }, [])
+
+  function cardClicked(e, cardId) {
+    console.log(cardId);
+  }
 
 
   return (
     <div className="imageGrid">
-      {albumInfo.map((album) => (
-        <div key={album.id} className="albumWrapper">
+      {loading && <h1>Loading</h1>}
+      {!loading && albumInfo.map((album) => (
+        <button onClick={(e) => cardClicked(e, album.id)} key={album.id} className="albumWrapper">
           <img src={album.cover_medium} alt="" />
           <h1>{album.title}</h1>
-        </div>
+        </button>
       ))}
     </div>
   )

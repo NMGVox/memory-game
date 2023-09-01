@@ -7,7 +7,7 @@ function App() {
   const [albumInfo, setAlbumInfo] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  function fetchAlbumInfo() {
+  async function fetchAlbumInfo() {
     const options = {
       method: 'GET',
       headers: {
@@ -16,24 +16,24 @@ function App() {
       }
     };
     const covers = []
-    albums.map(async (album) => {
+    await Promise.all(albums.map(async (album) => {
       try{
         const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${album}`;
         const data = await fetch(url, options);
         const result = await data.json();
         covers.push(result.data[0].album);
-        setAlbumInfo(covers);
       }
       catch (error) {
         console.log(error.message);
       }
-    });
+    }));
+    setAlbumInfo(covers);
+    setLoading(false);
   }
 
 
   useEffect(() => {
     fetchAlbumInfo()
-    setLoading(false);
   }, [])
 
   function cardClicked(e, cardId) {
@@ -43,7 +43,7 @@ function App() {
 
   return (
     <div className="imageGrid">
-      {loading && <h1>Loading</h1>}
+      {loading && <h1 className='loadingText'>Loading...</h1>}
       {!loading && albumInfo.map((album) => (
         <button onClick={(e) => cardClicked(e, album.id)} key={album.id} className="albumWrapper">
           <img src={album.cover_medium} alt="" />

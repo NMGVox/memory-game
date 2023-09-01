@@ -50,6 +50,16 @@ table {
 
 #root {
 	padding: 2vh;
+	display: flex;
+	justify-content: center;
+}
+
+.loadingText {
+	font-size: 2vw;
+	font-style: italic;
+	font-weight: bold;
+	text-decoration: underline;
+	text-align: center;
 }
 
 .imageGrid {

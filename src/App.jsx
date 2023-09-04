@@ -4,52 +4,23 @@ import { dataList as albums }  from './data/data'
 import './App.css'
 
 function App() {
-  const [albumInfo, setAlbumInfo] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  async function fetchAlbumInfo() {
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': 'c78f458c76msh16d4ce41cccd8ddp17bd48jsn04deb672eb9d',
-        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
-      }
-    };
-    const covers = []
-    await Promise.all(albums.map(async (album) => {
-      try{
-        const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${album}`;
-        const data = await fetch(url, options);
-        const result = await data.json();
-        covers.push(result.data[0].album);
-      }
-      catch (error) {
-        console.log(error.message);
-      }
-    }));
-    setAlbumInfo(covers);
-    setLoading(false);
+  const [gameActive, setGameActive] = useState(false);
+  
+  function startGame(e, difficulty) {
+    setGameActive(true);
   }
-
-
-  useEffect(() => {
-    fetchAlbumInfo()
-  }, [])
-
-  function cardClicked(e, cardId) {
-    console.log(cardId);
-  }
-
 
   return (
-    <div className="imageGrid">
-      {loading && <h1 className='loadingText'>Loading...</h1>}
-      {!loading && albumInfo.map((album) => (
-        <button onClick={(e) => cardClicked(e, album.id)} key={album.id} className="albumWrapper">
-          <img src={album.cover_medium} alt="" />
-          <h1>{album.title}</h1>
-        </button>
-      ))}
+    <div className='Main'>
+      <h1 className="gameName">Musical Memory</h1>
+      <div className="pickDifficulty">
+        <h2 className="containerHeader">Select A Difficulty</h2>
+        <div className='buttonContainer'>
+          <button onClick={(e)=> startGame(e, 'easy')} className='difficulty'>Easy</button>
+          <button onClick={(e)=> startGame(e, 'med')} className='difficulty'>Medium</button>
+          <button onClick={(e)=> startGame(e, 'hard')} className='difficulty'>Hard</button>
+        </div>
+      </div>
     </div>
   )
 }

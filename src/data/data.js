@@ -1,7 +1,7 @@
 const dataList = [
     'Stone Temple Pilots Core',
     'Stone Temple Pilots Tiny Music',
-    'Michael Jackson Bad',
+    'Michael Jackson Speed Demon',
     'Judas Priset Painkiller',
     'Faith No More King For A Day',
     'Queens of the Stone Age Paralyze',

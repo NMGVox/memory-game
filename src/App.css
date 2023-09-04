@@ -54,6 +54,49 @@ table {
 	justify-content: center;
 }
 
+.Main {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	min-height: 80vh;
+}
+
+.gameName {
+	font-size: 4vw;
+	font-weight: bold;
+	text-align: center;
+}
+
+.pickDifficulty {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	min-height: 30vh;
+	width: 50vw;
+	background-color: rgba(24, 1, 37, 0.753);
+}
+
+.containerHeader {
+	font-size: 2.5vw;
+	font-variant: small-caps;
+}
+
+.difficulty {
+	padding: 16px;
+	font-size: 20px;
+	border-radius: 4px;
+}
+
+.buttonContainer {
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+	align-items: center;
+	padding: 2vh 1vw;
+}
+
 .loadingText {
 	font-size: 2vw;
 	font-style: italic;
@@ -79,7 +122,7 @@ table {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(127, 255, 212, 0.233);
+	background-color: rgba(24, 1, 37, 0.753);
 	padding: 32px 0;
 	gap: 1vh;
 	border-radius: 32px;
@@ -95,7 +138,7 @@ table {
 	box-sizing: border-box;
 	padding: 16px 25px;
 	text-decoration: underline;
-	background-color: aliceblue;
+	background-color: rgba(240, 248, 255, 0.418);
 	border: 1px solid black;
 	width: 90%;
 	border-radius: 12px;

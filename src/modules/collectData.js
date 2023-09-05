@@ -48,7 +48,6 @@ async function fetchAlbumInfo(selectedQueries) {
     }));
     // setAlbumInfo(covers);
     // setLoading(false);
-    console.log(covers);
     return covers;
   }
 

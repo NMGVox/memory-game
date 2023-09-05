@@ -6,6 +6,7 @@ import './App.css'
 function App() {
   const [gameActive, setGameActive] = useState(false);
   const [difficulty, setDifficulty] = useState('');
+  const [loading, setLoading] = useState('');
   let musicData = useRef([]);
   
   function changeDifficulty(difficulty) {
@@ -16,17 +17,26 @@ function App() {
     setGameActive(true);
   }
 
+  async function gatherData() {
+    try {
+      musicData.current = await collectData(difficulty);
+      setLoading(false);
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     if(!gameActive) {
       return;
     }
-    musicData.current = collectData(difficulty);
-    console.log(musicData.current);
+    setLoading(true);
+    gatherData();
   }, [gameActive]);
 
   return (
     <div className='Main'>
-      <h1 className="gameName">Musical Memory</h1>
+      {!gameActive && <> <h1 className="gameName">Musical Memory</h1>
       <div className="pickDifficulty">
         <h2 className="containerHeader">Select A Difficulty</h2>
         <div className='buttonContainer'>
@@ -39,7 +49,7 @@ function App() {
         <div className='buttonContainer'>
           <button onClick={startGame} className='difficulty'>Start!</button>
         </div>
-      </div>
+      </div> </>}
     </div>
   )
 }

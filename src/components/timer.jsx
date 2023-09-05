@@ -14,7 +14,7 @@ function Timer() {
   }, [timer]);
 
   return (
-    <h1>{`${Math.floor(timer / 60)} : ${String(timer % 60).padStart(2, '0')}`}</h1>
+    <h1 className='timer'>{`${Math.floor(timer / 60)} : ${String(timer % 60).padStart(2, '0')}`}</h1>
   )
 }
 

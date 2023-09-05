@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { collectData } from './modules/collectData';
 import Timer from './components/timer'
 import './App.css'
+import CardGen from './components/CardGen';
 
 function App() {
   const [gameActive, setGameActive] = useState(false);
@@ -14,6 +15,7 @@ function App() {
   }
 
   function startGame() {
+    setLoading(true);
     setGameActive(true);
   }
 
@@ -23,6 +25,7 @@ function App() {
       setLoading(false);
     } catch(error) {
       console.log(error);
+      setLoading(false);
     }
   }
 
@@ -30,7 +33,6 @@ function App() {
     if(!gameActive) {
       return;
     }
-    setLoading(true);
     gatherData();
   }, [gameActive]);
 
@@ -50,6 +52,12 @@ function App() {
           <button onClick={startGame} className='difficulty'>Start!</button>
         </div>
       </div> </>}
+      {
+        !loading && gameActive &&
+        <>
+          <CardGen musicData={musicData.current}/>
+        </>
+      }
     </div>
   )
 }

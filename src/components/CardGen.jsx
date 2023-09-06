@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-function CardGen({ musicData, gameLost, gameWon }) {
+function CardGen({ musicData, gameLost, gameWon, gridSize }) {
   const [cardsClicked, setCardsClicked] = useState([]);
   const [counter, setCounter] = useState(0);
   const shuffleData = useRef(musicData);
@@ -33,10 +33,10 @@ function CardGen({ musicData, gameLost, gameWon }) {
 
 
   return (
-    <div className="imageGrid">
+    <div style={{gridTemplateColumns: `${gridSize}`}} className="imageGrid">
       {shuffleData.current.map((album) => (
         <button onClick={(e) => cardClicked(e, album.id)} key={album.id} className="albumWrapper">
-          <img src={album.cover_medium} alt="" />
+          <img className="albumCover" src={album.cover_medium} alt="" />
           <h1>{album.title}</h1>
         </button>
       ))}

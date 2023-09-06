@@ -59,6 +59,17 @@ function App() {
     gatherData();
   }, [gameState]);
 
+  function determineGridSize() {
+    if(difficulty === 'med') {
+      return 'repeat(4, 1fr)';
+    } else if(difficulty === 'hard') {
+      return 'repeat(6, 1fr)';
+    } 
+    return 'repeat(3, 1fr)';
+  }
+
+  let gridSize = determineGridSize();
+
   return (
     <div className='Main'>
       {(gameState === 'prep') && 
@@ -85,6 +96,7 @@ function App() {
             musicData={musicData.current}
             gameLost={gameLost}
             gameWon={gameWon}
+            gridSize={gridSize}
           />
         </>
       }

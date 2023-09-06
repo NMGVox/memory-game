@@ -49,7 +49,6 @@ table {
 }
 
 #root {
-	padding: 2vh;
 	display: flex;
 	justify-content: center;
 }
@@ -57,7 +56,7 @@ table {
 .Main {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	align-items: center;
 	min-height: 80vh;
 }
@@ -114,12 +113,12 @@ table {
 
 .imageGrid {
 	display: grid;
-	height:100vh;
-	grid-template-columns: 1fr 1fr 1fr;
+	height:100%;
 	grid-auto-rows: 1fr;
-	row-gap: 2vh;
+	row-gap: 1vh;
 	justify-items: center;
 	align-items: center;
+	background-color: rgba(0, 0, 0, 0.103);
 }
 
 .albumWrapper {
@@ -141,7 +140,7 @@ table {
 }
 
 .albumWrapper h1 {
-	font-size: 1vw;
+	font-size: .8vw;
 	box-sizing: border-box;
 	padding: 16px 25px;
 	text-decoration: underline;
@@ -153,6 +152,8 @@ table {
 
 .albumWrapper img {
 	border: 2px solid black;
+	aspect-ratio: 1 / 1;
+	width: 70%;
 }
 
 .timer {

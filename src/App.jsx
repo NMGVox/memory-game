@@ -22,7 +22,7 @@ function App() {
     } else {
       setDifficulty('hard');
     }
-    setGameState('active');
+    startGame();
   }
 
   function startGame() {
@@ -35,7 +35,7 @@ function App() {
   }
 
   function gameWon() {
-    setGameState('won');
+    setGameState('win');
   }
 
   function mainMenu() {
@@ -96,6 +96,7 @@ function App() {
             mainMenu={mainMenu}
             advanceLevel={advanceLevel}
             diff={difficulty}
+            result={gameState}
           />
         </Dimmer>
       }

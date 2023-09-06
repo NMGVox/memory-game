@@ -5,7 +5,7 @@ import './App.css'
 import CardGen from './components/CardGen';
 
 function App() {
-  const [gameActive, setGameActive] = useState(false);
+  const [gameState, setGameState] = useState('prep');
   const [difficulty, setDifficulty] = useState('');
   const [loading, setLoading] = useState('');
   let musicData = useRef([]);
@@ -16,7 +16,15 @@ function App() {
 
   function startGame() {
     setLoading(true);
-    setGameActive(true);
+    setGameState('active');
+  }
+
+  function gameLost() {
+    setGameState('lose');
+  }
+
+  function gameWon() {
+    setGameState('won');
   }
 
   async function gatherData() {
@@ -30,15 +38,15 @@ function App() {
   }
 
   useEffect(() => {
-    if(!gameActive) {
+    if(gameState !== 'active') {
       return;
     }
     gatherData();
-  }, [gameActive]);
+  }, [gameState]);
 
   return (
     <div className='Main'>
-      {!gameActive && <> <h1 className="gameName">Musical Memory</h1>
+      {(gameState === 'prep') && <> <h1 className="gameName">Musical Memory</h1>
       <div className="pickDifficulty">
         <h2 className="containerHeader">Select A Difficulty</h2>
         <div className='buttonContainer'>
@@ -47,15 +55,18 @@ function App() {
           <button style={{backgroundColor: "red"}} onClick={()=> changeDifficulty('hard')} className='difficulty'>Hard</button>
         </div>
         {difficulty && <h1>{`You have chosen ${difficulty}!`}</h1>}
-        {gameActive && <h1>Game has begun!</h1>}
         <div className='buttonContainer'>
           <button onClick={startGame} className='difficulty'>Start!</button>
         </div>
       </div> </>}
       {
-        !loading && gameActive &&
+        !loading && gameState === 'active' &&
         <>
-          <CardGen musicData={musicData.current}/>
+          <CardGen 
+            musicData={musicData.current}
+            gameLost={gameLost}
+            gameWon={gameWon}
+          />
         </>
       }
     </div>

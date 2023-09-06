@@ -78,6 +78,7 @@ table {
 	background-color: rgba(24, 1, 37, 0.753);
 	border-radius: 16px;
 	padding: 24px;
+	box-shadow: 1px 1px 3px 3px rgb(0, 0, 0);
 }
 
 .containerHeader {

@@ -12,8 +12,12 @@ function CardGen({ musicData, gameLost, gameWon, gridSize }) {
     .map(({ value }) => value)
   }, [counter]);
 
+  useEffect(() => {
+    checkForWin();
+  }, [counter]);
+
   function checkForWin() {
-    if(cardsClicked.length === musicData.length) {
+    if(counter === musicData.length) {
       gameWon();
     }
   }
@@ -27,17 +31,17 @@ function CardGen({ musicData, gameLost, gameWon, gridSize }) {
     tempClicked.push(cardId);
     setCardsClicked(tempClicked);
     setCounter(counter + 1);
-    checkForWin();
     return;
   }
 
+  console.log(counter);
 
   return (
     <div style={{gridTemplateColumns: `${gridSize}`}} className="imageGrid">
       {shuffleData.current.map((album) => (
         <button onClick={(e) => cardClicked(e, album.id)} key={album.id} className="albumWrapper">
           <img className="albumCover" src={album.cover_medium} alt="" />
-          <h1>{album.title}</h1>
+          <h1>{album.title.replace(/ *\([^)]*\) */g, "")}</h1>
         </button>
       ))}
     </div>

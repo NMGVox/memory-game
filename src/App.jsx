@@ -5,6 +5,7 @@ import './App.css'
 import CardGen from './components/CardGen';
 import Dimmer from './components/dimmer';
 import Results from './components/Results';
+import { JellyTriangle } from '@uiball/loaders';
 
 function App() {
   const [gameState, setGameState] = useState('prep');
@@ -78,17 +79,18 @@ function App() {
         <div className="pickDifficulty">
           <h2 className="containerHeader">Select A Difficulty</h2>
           <div className='buttonContainer'>
-            <button style={{backgroundColor: "blue"}} onClick={()=> changeDifficulty('easy')} className='difficulty'>Easy</button>
-            <button style={{backgroundColor: "green"}} onClick={()=> changeDifficulty('med')} className='difficulty'>Medium</button>
-            <button style={{backgroundColor: "red"}} onClick={()=> changeDifficulty('hard')} className='difficulty'>Hard</button>
+            <button style={{backgroundColor: "#7899D4"}} onClick={()=> changeDifficulty('easy')} className='difficulty'>EASY</button>
+            <button style={{backgroundColor: "#CBEFB6"}} onClick={()=> changeDifficulty('med')} className='difficulty'>MEDIUM</button>
+            <button style={{backgroundColor: "#9B1D20"}} onClick={()=> changeDifficulty('hard')} className='difficulty'>HARD</button>
           </div>
           {difficulty && <h1>{`You have chosen ${difficulty}!`}</h1>}
           <div className='buttonContainer'>
-            <button onClick={startGame} className='difficulty'>Start!</button>
+            <button onClick={startGame} style={{backgroundColor: "#1f0e29", color:"white"}} className='difficulty'>START!</button>
           </div>
         </div> 
       </>
       }
+      {loading && <JellyTriangle size={75} color="#9b8ea3"/>}
       {
         !loading && gameState === 'active' &&
         <>

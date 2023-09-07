@@ -56,9 +56,9 @@ table {
 .Main {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: center;
 	align-items: center;
-	min-height: 80vh;
+	min-height: 100vh;
 }
 
 .gameName {
@@ -90,9 +90,16 @@ table {
 }
 
 .difficulty {
-	padding: 16px;
+	padding: 8px 16px;
 	font-size: 20px;
 	border-radius: 4px;
+	transition: border .5s ease-in;
+	box-sizing: border-box;
+}
+
+.difficulty:hover {
+	cursor: pointer;
+	border: 2px solid rgba(255, 255, 255, 0.26);
 }
 
 .buttonContainer {
@@ -118,11 +125,14 @@ table {
 	row-gap: 1vh;
 	justify-items: center;
 	align-items: center;
-	background-color: rgba(0, 0, 0, 0.103);
+	background-color: rgba(21, 4, 36, 0.596);
+	box-sizing: border-box;
+	padding: 40px 0px;
 }
 
 .albumWrapper {
 	text-align: center;
+	box-sizing: border-box;
 	width: 60%;
 	display: flex;
 	flex-direction: column;
@@ -131,12 +141,14 @@ table {
 	background-color: rgba(24, 1, 37, 0.753);
 	padding: 32px 0;
 	gap: 1vh;
-	border-radius: 32px;
 	transition: scale .5s ease-in-out;
+	border: 2px solid black;
+	box-shadow: 1px 1px 5px 5px rgb(0, 0, 0);
 }
 
 .albumWrapper:hover {
 	scale: 110%;
+	outline: none;
 }
 
 .albumWrapper h1 {

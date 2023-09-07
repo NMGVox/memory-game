@@ -85,7 +85,7 @@ function App() {
           </div>
           {difficulty && <h1>{`You have chosen ${difficulty}!`}</h1>}
           <div className='buttonContainer'>
-            <button onClick={startGame} style={{backgroundColor: "#1f0e29", color:"white"}} className='difficulty'>START!</button>
+            <button onClick={startGame} style={{backgroundColor: "#1f0e29", color:"white"}} className='difficulty start'>START!</button>
           </div>
         </div> 
       </>

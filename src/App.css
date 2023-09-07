@@ -51,20 +51,23 @@ table {
 #root {
 	display: flex;
 	justify-content: center;
+	background-color: black;
 }
 
 .Main {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 	min-height: 100vh;
+	width: 100vw;
 }
 
 .gameName {
 	font-size: 4vw;
 	font-weight: bold;
 	text-align: center;
+	color:white;
 }
 
 .pickDifficulty {
@@ -74,7 +77,8 @@ table {
 	align-items: center;
 	min-height: 30vh;
 	width: 50vw;
-	background-color: rgba(24, 1, 37, 0.753);
+	background: rgb(30,27,75);
+	background: linear-gradient(94deg, rgba(30,27,75,1) 25%, rgba(74,4,78,1) 90%);
 	border-radius: 16px;
 	padding: 24px;
 	box-shadow: 1px 1px 3px 3px rgb(0, 0, 0);
@@ -83,10 +87,10 @@ table {
 .containerHeader {
 	font-size: 2.5vw;
 	font-variant: small-caps;
-	background-color: rgba(240, 248, 255, 0.418);
+	color:white;
+	background-color: rgba(70, 70, 70, 0);
 	padding: 12px 8px;
 	border-radius: 12px;
-	box-shadow: 1px 1px 3px 3px rgb(32, 2, 37);
 }
 
 .difficulty {
@@ -95,11 +99,16 @@ table {
 	border-radius: 4px;
 	transition: border .5s ease-in;
 	box-sizing: border-box;
+	border: none;
+}
+
+.start {
+	padding: 8px 60px;
 }
 
 .difficulty:hover {
 	cursor: pointer;
-	border: 2px solid rgba(255, 255, 255, 0.26);
+	border: 2px solid rgba(0, 0, 0, 0.459)
 }
 
 .buttonContainer {
@@ -118,6 +127,17 @@ table {
 	text-align: center;
 }
 
+.gameArea {
+	height:100%;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 50px;
+	box-sizing: border-box;
+	width:90%;
+}
+
 .imageGrid {
 	display: grid;
 	height:100%;
@@ -125,9 +145,45 @@ table {
 	row-gap: 1vh;
 	justify-items: center;
 	align-items: center;
-	background-color: rgba(21, 4, 36, 0.596);
 	box-sizing: border-box;
 	padding: 40px 0px;
+}
+
+.gameInfo {
+	display: flex;
+	width: 90%;
+	justify-content: space-evenly;
+	font-size: 2vw;
+	color: white;
+	animation: wiggle 2s linear infinite;
+	font-weight: bold;
+}
+
+.timerContainer {
+	display:flex;
+	align-items: center;
+	flex-basis: 50%;
+	gap: 12px;
+	justify-content: flex-end;
+}
+
+.score {
+	text-align: center;
+	flex-basis: 50%;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.score img {
+	height: 32px;
+	aspect-ratio: 1 /1;
+}
+
+@keyframes wiggle {
+	50% {
+		transform: translateY(5px);
+	}
 }
 
 .albumWrapper {
@@ -138,28 +194,32 @@ table {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(24, 1, 37, 0.753);
+	background: #060e3a;
 	padding: 32px 0;
 	gap: 1vh;
-	transition: scale .5s ease-in-out;
+	transition: transform .2s linear;
 	border: 2px solid black;
-	box-shadow: 1px 1px 5px 5px rgb(0, 0, 0);
+	box-shadow: 3px 3px 5px 5px rgba(16, 0, 85, 0.281);
+	perspective: 1500px;
 }
 
 .albumWrapper:hover {
-	scale: 110%;
 	outline: none;
+	transform: scale(1.05) rotateX(10deg) rotateY(-10deg);
+}
+
+.flip,
+.flip:hover {
+	transform: rotateY(90deg);
 }
 
 .albumWrapper h1 {
-	font-size: .8vw;
+	font-size: .9vw;
 	box-sizing: border-box;
-	padding: 16px 25px;
 	text-decoration: underline;
-	background-color: rgba(240, 248, 255, 0.418);
-	border: 1px solid black;
 	width: 90%;
-	border-radius: 12px;
+	text-overflow: ellipsis;
+	color:white;
 }
 
 .albumWrapper img {
@@ -209,4 +269,9 @@ table {
 	padding: 8px;
 	box-shadow: 1px 1px 3px 3px rgb(32, 2, 37);
 	border-radius: 12px;
+}
+
+.icon {
+	-webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
 }

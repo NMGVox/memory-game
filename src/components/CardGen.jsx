@@ -48,7 +48,7 @@ function CardGen({ musicData, gameLost, gameWon, gridSize }) {
 
   return (
     <div className="gameArea">
-      <div className="gameInfo">
+      <div style={{animation: `wiggle ${2 / counter}s linear infinite`}} className="gameInfo">
         <span className="score">
           <img className='icon' src={vinylIcon} alt="Vinyl" />
           {`${counter} / ${musicData.length}`}

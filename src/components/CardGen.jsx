@@ -35,11 +35,14 @@ function CardGen({ musicData, gameLost, gameWon, gridSize }) {
     }
     setCounter(prevCounter => prevCounter +1);
     setFlipStatus('flipping');
-    await new Promise(resolve => setTimeout(resolve, 800));
+    await new Promise(resolve => setTimeout(resolve, 400));
+    setFlipStatus('flipped');
+    await new Promise(resolve => setTimeout(resolve, 1400));
+    setShuffleFlag(prevFlag => prevFlag +1);
+    setFlipStatus('flipToFront');
+    await new Promise(resolve => setTimeout(resolve, 400));
     setFlipStatus('normal');
     setCardsClicked(prevClicked => [...prevClicked, cardId]);
-    
-    setShuffleFlag(prevFlag => prevFlag +1);
     return;
   }
 
@@ -55,11 +58,24 @@ function CardGen({ musicData, gameLost, gameWon, gridSize }) {
           <Timer/>
         </span>
       </div>
+      
       <div style={{gridTemplateColumns: `${gridSize}`}} className="imageGrid">
         {shuffleData.map((album) => (
-          <button disabled={flipStatus === 'flipping' ? true : false} onClick={(e) => cardClicked(e, album.id)} key={album.id} className={`albumWrapper ${flipStatus === 'flipping' ? 'flip': ''}`}>
-            <img className="albumCover" src={album.cover_medium} alt="" />
-            <h1>{album.title.replace(/ *\([^)]*\) */g, "")}</h1>
+          <button disabled={flipStatus !== 'normal' ? true : false} 
+              onClick={(e) => cardClicked(e, album.id)} 
+              key={album.id} className='albumWrapper'
+          >
+            <div className={`albumInnerWrapper ${flipStatus === 'flipping' ? 'flip' : ''} 
+                            ${flipStatus === 'flipped' ? 'flipped' : ''}
+                            ${flipStatus === 'flipToFront' ? 'flipBack' : ''}`}>
+              <div className="albumFront">
+                <img className="albumCover" src={album.cover_medium} alt="" />
+                <h1>{album.title.replace(/ *\([^)]*\) */g, "")}</h1>
+              </div>
+              <div className="albumBack">
+                <img className={`icon cardDisc`} src={vinylIcon} alt="" />
+              </div>
+            </div>
           </button>
         ))}
       </div>

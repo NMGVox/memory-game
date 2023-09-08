@@ -75,9 +75,9 @@ function App() {
     <div className='Main'>
       {(gameState === 'prep') && 
       <> 
-        <h1 className="gameName">Musical Memory</h1>
+        <h1 className="gameName">ALBUM COVER MEMORY</h1>
         <div className="pickDifficulty">
-          <h2 className="containerHeader">Select A Difficulty</h2>
+          <h2 className="containerHeader">SELECT A DIFFICULTY</h2>
           <div className='buttonContainer'>
             <button style={{backgroundColor: "#7899D4"}} onClick={()=> changeDifficulty('easy')} className='difficulty'>EASY</button>
             <button style={{backgroundColor: "#CBEFB6"}} onClick={()=> changeDifficulty('med')} className='difficulty'>MEDIUM</button>

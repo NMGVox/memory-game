@@ -68,6 +68,9 @@ table {
 	font-weight: bold;
 	text-align: center;
 	color:white;
+	background: -webkit-linear-gradient(94deg, rgba(30,27,75,1) 25%, rgba(74,4,78,1) 90%);
+  	-webkit-background-clip: text;
+  	-webkit-text-stroke: 6px transparent;
 }
 
 .pickDifficulty {
@@ -85,8 +88,7 @@ table {
 }
 
 .containerHeader {
-	font-size: 2.5vw;
-	font-variant: small-caps;
+	font-size: 3vw;
 	color:white;
 	background-color: rgba(70, 70, 70, 0);
 	padding: 12px 8px;
@@ -141,7 +143,9 @@ table {
 .imageGrid {
 	display: grid;
 	height:100%;
+	width: 60%;
 	grid-auto-rows: 1fr;
+	column-gap: 1vw;
 	row-gap: 1vh;
 	justify-items: center;
 	align-items: center;
@@ -187,20 +191,13 @@ table {
 }
 
 .albumWrapper {
-	text-align: center;
 	box-sizing: border-box;
-	width: 60%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background: #060e3a;
-	padding: 32px 0;
-	gap: 1vh;
+	width: 100%;
+	height: 80%;
+	background: transparent;
 	transition: transform .2s linear;
-	border: 2px solid black;
-	box-shadow: 3px 3px 5px 5px rgba(16, 0, 85, 0.281);
 	perspective: 1500px;
+	border:none;
 }
 
 .albumWrapper:hover {
@@ -208,18 +205,75 @@ table {
 	transform: scale(1.05) rotateX(10deg) rotateY(-10deg);
 }
 
-.flip,
-.flip:hover {
-	animation: flip .8s ease-in-out 1;
+/* .albumWrapper:hover {
+	animation: flip 5s ease-in-out infinite;
+} */
+
+.albumInnerWrapper {
+	position:relative;
+	width: 100%;
+	transform-style: preserve-3d;
+	box-shadow: 3px 3px 5px 5px rgba(16, 0, 85, 0.281);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }
 
-@keyframes flip {
+/* .albumInnerWrapper:hover {
+	animation: flip 5s ease-in-out infinite;
+} */
+
+.albumFront,
+.albumBack {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position:absolute;
+	width: 100%;
+	height:100%;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	text-align: center;
+	background-color: rgb(11, 1, 24);
+}
+
+.albumBack {
+	transform: rotateY(180deg);
+}
+
+.flip {
+	animation: flip180 .4s ease-in-out 1;
+	animation-fill-mode: forwards;
+}
+
+.flipped {
+	transform: rotateY(180deg);
+}
+
+.flipBack {
+	animation: flip360 .4s ease-in-out 1;
+}
+
+@keyframes flip180 {
 	100% {
-		transform: rotateY(180deg)
+		transform: rotateY(180deg);
 	}
 }
 
-.albumWrapper h1 {
+@keyframes flip360 {
+	0% {
+		transform: rotateY(180deg);
+	}
+	100% {
+		transform: rotateY(360deg);
+	}
+}
+
+
+.albumFront h1 {
 	font-size: .9vw;
 	box-sizing: border-box;
 	text-decoration: underline;
@@ -228,7 +282,7 @@ table {
 	color:white;
 }
 
-.albumWrapper img {
+.albumCover {
 	border: 2px solid black;
 	aspect-ratio: 1 / 1;
 	width: 70%;
@@ -238,6 +292,12 @@ table {
 	font-size: 2vw;
 	color: white;
 }
+
+.cardDisc {
+	width: 40%;
+	height:auto;
+}
+
 
 .dimmer {
 	position:fixed;

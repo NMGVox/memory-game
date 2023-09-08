@@ -6,15 +6,17 @@ import Timer from "./timer";
 function CardGen({ musicData, gameLost, gameWon, gridSize }) {
   const [cardsClicked, setCardsClicked] = useState([]);
   const [counter, setCounter] = useState(0);
-  const shuffleData = useRef(musicData);
+  //const shuffleData = useRef(musicData);
+  const [shuffleData, setShuffleData] = useState([]);
   const [flipStatus, setFlipStatus] = useState('normal');
+  const [shuffleFlag, setShuffleFlag] = useState(0);
 
   useEffect(() => {
-    shuffleData.current = musicData
+    setShuffleData(musicData
     .map(value => ({ value, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
-  }, [counter]);
+    .map(({ value }) => value));
+  }, [shuffleFlag]);
 
   useEffect(() => {
     checkForWin();
@@ -31,13 +33,13 @@ function CardGen({ musicData, gameLost, gameWon, gridSize }) {
       gameLost();
       return;
     }
+    setCounter(prevCounter => prevCounter +1);
     setFlipStatus('flipping');
-    await new Promise(resolve => setTimeout((resolve), 200));
+    await new Promise(resolve => setTimeout(resolve, 800));
     setFlipStatus('normal');
-    const tempClicked = cardsClicked;
-    tempClicked.push(cardId);
-    setCardsClicked(tempClicked);
-    setCounter(counter + 1);
+    setCardsClicked(prevClicked => [...prevClicked, cardId]);
+    
+    setShuffleFlag(prevFlag => prevFlag +1);
     return;
   }
 
@@ -54,7 +56,7 @@ function CardGen({ musicData, gameLost, gameWon, gridSize }) {
         </span>
       </div>
       <div style={{gridTemplateColumns: `${gridSize}`}} className="imageGrid">
-        {shuffleData.current.map((album) => (
+        {shuffleData.map((album) => (
           <button disabled={flipStatus === 'flipping' ? true : false} onClick={(e) => cardClicked(e, album.id)} key={album.id} className={`albumWrapper ${flipStatus === 'flipping' ? 'flip': ''}`}>
             <img className="albumCover" src={album.cover_medium} alt="" />
             <h1>{album.title.replace(/ *\([^)]*\) */g, "")}</h1>

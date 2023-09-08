@@ -315,12 +315,35 @@ table {
 	background-color: azure;
 	border-radius: 12px;
 	border: 4px solid black;
+	animation: dropDown 1s ease-out 1;
+	animation-fill-mode: forwards;
+	width: 50vw;
+	background: rgb(30,27,75);
+	background: linear-gradient(94deg, rgba(30,27,75,1) 25%, rgba(74,4,78,1) 90%);
+}
+
+@keyframes dropDown {
+	0% {
+		transform: translateY(-50vh);
+	}
+
+	60% {
+		transform: translateY(5vh);
+	}
+
+	100% {
+		transform: translateY(0vh);
+	}
 }
 
 .resultText {
 	text-align: center;
-	font-size: 2vw;
+	font-size: 4vw;
 	font-weight: bold;
+	background: -webkit-linear-gradient(94deg, rgba(30,27,75,1) 25%, rgba(74,4,78,1) 90%);
+  	-webkit-background-clip: text;
+  	-webkit-text-stroke: 6px transparent;
+	color:white;
 }
 
 .verticalFlex {
@@ -333,8 +356,19 @@ table {
 .resultsButton {
 	font-size: 1.5vw;
 	padding: 8px;
-	box-shadow: 1px 1px 3px 3px rgb(32, 2, 37);
-	border-radius: 12px;
+	/* box-shadow: 1px 1px 3px 3px rgb(32, 2, 37); */
+	border-radius: 4px;
+	border: 1px solid black;
+	box-sizing: border-box;
+	transition: box-shadow .4s ease-out;
+	width: 80%;
+	background-color: rgba(0, 0, 0, 0.233);
+	color:white;
+}
+
+.resultsButton:hover {
+	cursor: pointer;
+	box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.425);
 }
 
 .icon {

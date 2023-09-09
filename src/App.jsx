@@ -20,6 +20,21 @@ function App() {
 
   let musicData = useRef([]);
 
+  useEffect(() => {
+    if(window.localStorage.getItem('scores') !== null) {
+      let temp = window.localStorage.getItem('scores');
+      let parsedTemp = JSON.parse(temp);
+      setHighScores(parsedTemp);
+    }
+  }, []);
+
+  function saveScores() {
+    setHighScores((prevHighScores) => {
+      window.localStorage.setItem('scores', JSON.stringify(prevHighScores));
+      return prevHighScores;
+    })
+  }
+
   function updateTime(time, s) {
     if (s === 'w' && (highScores[difficulty].time === 'dnf' || time < highScores[difficulty].time )) {
       setHighScores((prevHighScores) => ({
@@ -64,15 +79,15 @@ function App() {
 
   function gameLost(score, time) {
     setGameState('lose');
-    console.log(score);
     updateScore(score);
+    saveScores();
   }
 
   function gameWon(score, time) {
     setGameState('win');
-    console.log(score);
     updateScore(score, time, 'w');
     updateTime(time, 'w')
+    saveScores();
   }
 
   function mainMenu() {

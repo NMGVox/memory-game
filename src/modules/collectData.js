@@ -11,7 +11,6 @@ function collectData(diff) {
     }
     let indexArray = [];
     while(indexArray.length < numberOfAlbums) {
-        console.log(indexArray.length);
         let tempIndx = Math.floor(Math.random() * albumQueries.length);
         if(indexArray.indexOf(tempIndx) === -1) {
             indexArray.push(tempIndx);

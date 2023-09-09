@@ -41,7 +41,7 @@ function CardGen({ musicData, gameLost, gameWon, gridSize }) {
 
   async function cardClicked(e, cardId) {
     if(cardsClicked.includes(cardId)) {
-      gameLost();
+      gameLost(counter, timer);
       return;
     }
     setCounter(prevCounter => prevCounter +1);

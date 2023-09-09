@@ -68,7 +68,7 @@ table {
 	font-size: 4vw;
 	font-weight: bold;
 	text-align: center;
-	color:white;
+	color:rgb(234, 212, 245);
 	background: -webkit-linear-gradient(94deg, rgba(30,27,75,1) 25%, rgba(74,4,78,1) 90%);
   	-webkit-background-clip: text;
   	-webkit-text-stroke: 6px transparent;
@@ -102,11 +102,28 @@ table {
 	border-radius: 12px;
 }
 
+.scoreWrapperMain {
+	display:grid;
+	width: 80%;
+	padding: 12px;
+	background-color: azure;
+	grid-template-columns: repeat(5, 1fr);
+	border-radius: 4px;
+	border: 2px solid rgba(0, 0, 0, 0.568); 
+}
+
+.scoreWrapperMain span {
+	box-sizing: border-box;
+	height: 100%;
+	display:flex;
+	justify-content: center;
+}
+
 .difficulty {
 	padding: 8px 16px;
 	font-size: 20px;
 	border-radius: 4px;
-	transition: border .5s ease-in;
+	transition: border .2s ease-in;
 	box-sizing: border-box;
 	border: none;
 }

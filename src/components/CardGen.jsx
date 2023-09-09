@@ -10,6 +10,17 @@ function CardGen({ musicData, gameLost, gameWon, gridSize }) {
   const [shuffleData, setShuffleData] = useState([]);
   const [flipStatus, setFlipStatus] = useState('normal');
   const [shuffleFlag, setShuffleFlag] = useState(0);
+  const [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    const gameTimer = setInterval(() => {
+      setTimer(timer + 1);
+    }, 1000)
+
+    return (()=> {
+      clearInterval(gameTimer);
+    })
+  }, [timer]);
 
   useEffect(() => {
     setShuffleData(musicData
@@ -24,7 +35,7 @@ function CardGen({ musicData, gameLost, gameWon, gridSize }) {
 
   function checkForWin() {
     if(counter === musicData.length) {
-      gameWon();
+      gameWon(counter, timer);
     }
   }
 
@@ -55,7 +66,7 @@ function CardGen({ musicData, gameLost, gameWon, gridSize }) {
         </span>
         <span className="timerContainer">
           <img className='icon' src={timeIcon} alt="Time Icon"/>
-          <Timer/>
+          <h1 className='timer'>{`${Math.floor(timer / 60)} : ${String(timer % 60).padStart(2, '0')}`}</h1>
         </span>
       </div>
       

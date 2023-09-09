@@ -9,9 +9,36 @@ import { JellyTriangle } from '@uiball/loaders';
 
 function App() {
   const [gameState, setGameState] = useState('prep');
-  const [difficulty, setDifficulty] = useState('');
+  const [difficulty, setDifficulty] = useState('easy');
   const [loading, setLoading] = useState('');
+  const [highScores, setHighScores] = useState({
+    "easy": {score: 0, time: 'dnf',},
+    "med": {score: 0, time: 'dnf',},
+    "hard": {score: 0, time: 'dnf',},
+  });
+
   let musicData = useRef([]);
+
+  function updateScore(score, time, s) {
+    if( score > highScores[difficulty].score ) {
+      setHighScores({
+        ...highScores,
+        [difficulty] : {
+          ...highScores[difficulty],
+          score: score,
+        },
+      });
+    }
+    if (s === 'w' && (highScores[difficulty].time === 'dnf' || time < highScores[difficulty].time )) {
+      setHighScores({
+        ...highScores,
+        [difficulty] : {
+          ...highScores[difficulty],
+          time: time,
+        },
+      });
+    } 
+  }
   
   function changeDifficulty(difficulty) {
     setDifficulty(difficulty);
@@ -31,12 +58,14 @@ function App() {
     setGameState('active');
   }
 
-  function gameLost() {
+  function gameLost(score, time) {
     setGameState('lose');
+    updateScore(score, time, 'l');
   }
 
-  function gameWon() {
+  function gameWon(score, time) {
     setGameState('win');
+    updateScore(score, time, 'w');
   }
 
   function mainMenu() {
@@ -70,6 +99,7 @@ function App() {
   }
 
   let gridSize = determineGridSize();
+  let diffTime = highScores[difficulty].time;
 
   return (
     <div className='Main'>
@@ -83,7 +113,15 @@ function App() {
             <button style={{backgroundColor: "#CBEFB6"}} onClick={()=> changeDifficulty('med')} className='difficulty'>MEDIUM</button>
             <button style={{backgroundColor: "#9B1D20"}} onClick={()=> changeDifficulty('hard')} className='difficulty'>HARD</button>
           </div>
-          {difficulty && <h1>{`You have chosen ${difficulty}!`}</h1>}
+          {difficulty && 
+            <div className='scoreWrapperMain'>
+              <span>{`${difficulty.toUpperCase()}`}</span>
+              <span>BEST SCORE</span>
+              <span>{highScores[difficulty].score}</span>
+              <span>BEST TIME</span>
+              <span>{diffTime === 'dnf' ? 'DNF' : `${Math.floor(diffTime / 60)} : ${String(diffTime % 60).padStart(2, '0')}`}</span>
+            </div>
+          }
           <div className='buttonContainer'>
             <button onClick={startGame} style={{backgroundColor: "#1f0e29", color:"white"}} className='difficulty start'>START!</button>
           </div>

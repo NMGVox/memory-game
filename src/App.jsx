@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
 import { collectData } from './modules/collectData';
-import Timer from './components/timer'
 import './App.css'
 import CardGen from './components/CardGen';
 import Dimmer from './components/dimmer';
@@ -23,9 +22,9 @@ function App() {
   let musicData = useRef([]);
 
   useEffect(() => {
-    if(window.localStorage.getItem('scores') !== null) {
-      let temp = window.localStorage.getItem('scores');
-      let parsedTemp = JSON.parse(temp);
+    let temp = window.localStorage.getItem('scores');
+    let parsedTemp = JSON.parse(temp);
+    if(parsedTemp !== null) {
       setHighScores(parsedTemp);
     }
   }, []);

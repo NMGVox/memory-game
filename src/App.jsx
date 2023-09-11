@@ -7,6 +7,8 @@ import Dimmer from './components/dimmer';
 import Results from './components/Results';
 import { JellyTriangle } from '@uiball/loaders';
 import ScoreWrapper from './components/scoreWrapper';
+import SpinnerLoad from './components/loadingScreen';
+import Footer from './components/footer';
 
 function App() {
   const [gameState, setGameState] = useState('prep');
@@ -27,6 +29,10 @@ function App() {
       setHighScores(parsedTemp);
     }
   }, []);
+
+  function resetScores() {
+    window.localStorage.setItem('scores', null);
+  }
 
   function saveScores() {
     setHighScores((prevHighScores) => {
@@ -147,7 +153,7 @@ function App() {
         </div> 
       </>
       }
-      {loading && <JellyTriangle size={75} color="#9b8ea3"/>}
+      {loading && <SpinnerLoad/>}
       {
         !loading && gameState === 'active' &&
         <>
@@ -170,6 +176,11 @@ function App() {
             result={gameState}
           />
         </Dimmer>
+      }
+      {gameState === "prep" && 
+        <Footer
+          resetScores={resetScores}
+        />
       }
     </div>
   )

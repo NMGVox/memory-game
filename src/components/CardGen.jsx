@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import vinylIcon from "../img/vinyl.png";
+import vinylIcon from "../img/vinyl.svg";
 import timeIcon from "../img/time.png";
 import Timer from "./timer";
 

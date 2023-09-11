@@ -52,12 +52,17 @@ table {
 	display: flex;
 	justify-content: center;
 	background-color: black;
+	--main-gradient: -webkit-linear-gradient(0deg, rgba(30,27,75,1) 25%, rgba(74,4,78,1) 90%);
+	--primary-color: black;
+	--container-text: white;
+	--background-text: rgb(234, 212, 245);
+	--card-gradient: -webkit-linear-gradient(0deg, rgba(30,27,75,1) 25%, rgb(12, 2, 54) 90%);
 }
 
 .Main {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	align-items: center;
 	min-height: 100vh;
 	width: 100vw;
@@ -65,11 +70,12 @@ table {
 }
 
 .gameName {
+	margin-top: 20vh;
 	font-size: 4vw;
 	font-weight: bold;
 	text-align: center;
-	color:rgb(234, 212, 245);
-	background: -webkit-linear-gradient(94deg, rgba(30,27,75,1) 25%, rgba(74,4,78,1) 90%);
+	color:var(--background-text);
+	background: var(--main-gradient);
   	-webkit-background-clip: text;
   	-webkit-text-stroke: 6px transparent;
 	animation: dropDown .8s ease-in-out 1;
@@ -85,19 +91,20 @@ table {
 	min-height: 30vh;
 	width: 50vw;
 	background: rgb(30,27,75);
-	background: linear-gradient(94deg, rgba(30,27,75,1) 25%, rgba(74,4,78,1) 90%);
+	background: var(--main-gradient);
 	border-radius: 16px;
 	padding: 24px;
 	box-shadow: 1px 1px 3px 3px rgb(0, 0, 0);
 	animation: clothesLine 1.2s ease-in-out 1;
 	animation-delay: 1000ms;
 	animation-fill-mode: backwards;
+	perspective: 1500px;
+	transform-style: preserve-3d;
 }
 
 .containerHeader {
 	font-size: 3vw;
 	color:white;
-	background-color: rgba(70, 70, 70, 0);
 	padding: 12px 8px;
 	border-radius: 12px;
 }
@@ -121,7 +128,7 @@ table {
 
 .scoreWrapperMain span:not(:first-child) {
 	background-color: rgba(0, 0, 0, 0.5);
-	color:white;
+	color:var(--container-text);
 }
 
 .scoreWrapperMain span:first-child {
@@ -154,14 +161,6 @@ table {
 	padding: 2vh 1vw;
 }
 
-.loadingText {
-	font-size: 2vw;
-	font-style: italic;
-	font-weight: bold;
-	text-decoration: underline;
-	text-align: center;
-}
-
 .gameArea {
 	height:100%;
 	display:flex;
@@ -191,7 +190,7 @@ table {
 	width: 90%;
 	justify-content: space-evenly;
 	font-size: 2vw;
-	color: rgb(234, 212, 245);;
+	color: var(--background-text);
 	animation: wiggle 2s linear infinite;
 	font-weight: bold;
 }
@@ -271,7 +270,7 @@ table {
 	-webkit-backface-visibility: hidden;
 	text-align: center;
 	background: rgb(30,27,75);
-	background: linear-gradient(94deg, rgba(30,27,75,1) 25%, rgb(10, 1, 19) 90%);
+	background: var(--card-gradient);
 }
 
 .albumBack {
@@ -324,7 +323,7 @@ table {
 
 .timer {
 	font-size: 2vw;
-	color: rgb(234, 212, 245);;
+	color: var(--background-text);
 }
 
 .cardDisc {
@@ -334,7 +333,7 @@ table {
 
 
 .dimmer {
-	position:fixed;
+	position:absolute;
 	bottom: 0;
 	height: 100vh;
 	width: 100vw;
@@ -346,7 +345,6 @@ table {
 
 .resultsWrapper {
 	padding: 20px 60px;
-	background-color: azure;
 	border-radius: 12px;
 	border: 4px solid black;
 	animation: dropDown 1s ease-out 1;
@@ -384,11 +382,21 @@ table {
 	}
 }
 
+/* @keyframes clothesLine {
+	0% {
+		transform: scale(0);
+	}
+
+	100% {
+		transform: scale(1) rotateX(720deg) ;
+	}
+} */
+
 .resultText {
 	text-align: center;
 	font-size: 4vw;
 	font-weight: bold;
-	background: -webkit-linear-gradient(94deg, rgba(30,27,75,1) 25%, rgba(74,4,78,1) 90%);
+	background: (--main-gradient);
   	-webkit-background-clip: text;
   	-webkit-text-stroke: 6px transparent;
 	color:white;
@@ -420,6 +428,110 @@ table {
 }
 
 .icon {
-	-webkit-filter: invert(100%); /* Safari/Chrome */
-    filter: invert(100%);
+	-webkit-filter: invert(89%) sepia(98%) saturate(7289%) hue-rotate(184deg) brightness(103%) contrast(92%); /* Safari/Chrome */
+    filter: invert(89%) sepia(98%) saturate(7289%) hue-rotate(184deg) brightness(103%) contrast(92%);
+}
+
+.loadingText {
+	font-size: 4vw;
+	font-weight: bold;
+	text-align: center;
+	color:var(--background-text);
+	background: var(--main-gradient);
+  	-webkit-background-clip: text;
+  	-webkit-text-stroke: 6px transparent;
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+}
+
+.loadingContainer {
+	display: flex;
+	height: 80vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.loadingIcon {
+	height: 50%;
+	width: auto;
+	animation: spin 1s infinite ease-in-out;
+}
+
+@keyframes spin {
+	100% {
+		transform: rotateZ(360deg);
+	}
+}
+
+.footer {
+	min-height:6%;
+	background-color: var(--primary-color);
+	display:flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 40px;
+	width:100%;
+	box-sizing: border-box;
+	padding: 0 32px;
+}
+
+.footerLink {
+	height: 5vh;
+	width: auto;
+}
+
+.footerLink:hover {
+	animation: spin .5s linear 1;
+}
+
+.footerButton {
+	background-color: transparent;
+	border:none;
+}
+
+.footerButton:hover {
+	cursor: pointer;
+}
+
+.tutorialWrapper {
+	height: 40vh;
+	width: 20vw;
+	color:var(--background-text);
+	background: var(--card-gradient);
+	box-sizing: border-box;
+	padding: 1%;
+	border-radius: 8px;
+	position:relative;
+}
+
+.tutorial {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	height:100%;
+}
+
+.tutorial h3 {
+	text-align: center;
+	font-size: 1vw;
+	padding: 12px;
+	background-color: rgba(0, 0, 0, 0.459);
+	box-shadow: 3px 3px 5px 5px rgba(21, 1, 58, 0.459);
+	border-radius: 4px;
+}
+
+.closeHowTo {
+	position: absolute;
+	top: 5px;
+	background: rgba(255, 255, 255, 0.692);
+	box-shadow: 3px 3px 5px 5px rgba(21, 1, 58, 0.459);
+	border-radius: 8px;
+	border:none;
+}
+
+.closeHowTo:hover {
+	cursor: pointer;
 }

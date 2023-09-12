@@ -57,6 +57,9 @@ table {
 	--container-text: white;
 	--background-text: rgb(234, 212, 245);
 	--card-gradient: -webkit-linear-gradient(0deg, rgba(30,27,75,1) 25%, rgb(12, 2, 54) 90%);
+	--container-header-text: clamp(20px, 3vw, 54px);
+	--big-text: clamp(30px, 4vw, 72px);
+	--album-text: clamp(10px, 1.1vw, 20px);
 }
 
 .Main {
@@ -71,7 +74,7 @@ table {
 
 .gameName {
 	margin-top: 20vh;
-	font-size: 4vw;
+	font-size: var(--big-text);
 	font-weight: bold;
 	text-align: center;
 	color:var(--background-text);
@@ -103,15 +106,16 @@ table {
 }
 
 .containerHeader {
-	font-size: 3vw;
+	font-size: var(--container-header-text);
 	color:white;
 	padding: 12px 8px;
 	border-radius: 12px;
+	text-align: center;
 }
 
 .scoreWrapperMain {
 	display:flex;
-	width: 80%;
+	width: 85%;
 	height: 4vh;
 	border-radius: 4px;
 	box-sizing: border-box;
@@ -124,6 +128,8 @@ table {
 	display:flex;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
+	font-size: clamp(10px, 1.2vw, 16px);
 }
 
 .scoreWrapperMain span:not(:first-child) {
@@ -137,7 +143,7 @@ table {
 
 .difficulty {
 	padding: 8px 16px;
-	font-size: 20px;
+	font-size: clamp(12px, 1.5vw, 20px);
 	border-radius: 4px;
 	transition: border .2s ease-in;
 	box-sizing: border-box;
@@ -155,7 +161,7 @@ table {
 
 .buttonContainer {
 	display: flex;
-	gap: 16px;
+	gap: .5vw;
 	justify-content: center;
 	align-items: center;
 	padding: 2vh 1vw;
@@ -174,15 +180,16 @@ table {
 
 .imageGrid {
 	display: grid;
-	height:100%;
-	width: 60%;
-	grid-auto-rows: 1fr;
+	min-height: 100%;
+	width: 90%;
+	grid-auto-rows: 30vh;
 	column-gap: 1vw;
 	row-gap: 1vh;
 	justify-items: center;
 	align-items: center;
 	box-sizing: border-box;
 	padding: 40px 0px;
+	overflow: auto;
 }
 
 .gameInfo {
@@ -251,6 +258,7 @@ table {
 	justify-content: center;
 	align-items: center;
 	height: 100%;
+	padding: 24px 0px;
 }
 
 /* .albumInnerWrapper:hover {
@@ -307,7 +315,7 @@ table {
 
 
 .albumFront h1 {
-	font-size: .9vw;
+	font-size: var(--album-text);
 	box-sizing: border-box;
 	text-decoration: underline;
 	width: 90%;
@@ -318,7 +326,7 @@ table {
 .albumCover {
 	border: 2px solid black;
 	aspect-ratio: 1 / 1;
-	width: 70%;
+	width: clamp(50px, 70%, 225px);
 }
 
 .timer {
@@ -331,10 +339,10 @@ table {
 	height:auto;
 }
 
-
 .dimmer {
 	position:absolute;
 	bottom: 0;
+	left: 0;
 	height: 100vh;
 	width: 100vw;
 	background-color: rgba(0, 0, 0, 0.678);
@@ -394,12 +402,12 @@ table {
 
 .resultText {
 	text-align: center;
-	font-size: 4vw;
+	font-size: var(--big-text);
 	font-weight: bold;
 	background: (--main-gradient);
   	-webkit-background-clip: text;
   	-webkit-text-stroke: 6px transparent;
-	color:white;
+	color: var(--container-text);
 }
 
 .verticalFlex {
@@ -410,7 +418,7 @@ table {
 }
 
 .resultsButton {
-	font-size: 1.5vw;
+	font-size: var(--container-header-text);
 	padding: 8px;
 	/* box-shadow: 1px 1px 3px 3px rgb(32, 2, 37); */
 	border-radius: 4px;
@@ -419,7 +427,7 @@ table {
 	transition: box-shadow .4s ease-out;
 	width: 80%;
 	background-color: rgba(0, 0, 0, 0.233);
-	color:white;
+	color: var(--container-text);
 }
 
 .resultsButton:hover {
@@ -433,7 +441,7 @@ table {
 }
 
 .loadingText {
-	font-size: 4vw;
+	font-size: var(--big-text);
 	font-weight: bold;
 	text-align: center;
 	color:var(--background-text);
@@ -480,15 +488,25 @@ table {
 .footerLink {
 	height: 5vh;
 	width: auto;
+	animation: fadeIn .5s ease-in-out 1500ms 1 both;
 }
 
 .footerLink:hover {
-	animation: spin .5s linear 1;
+	animation: fadeIn .5s ease-in-out 1500ms 1 both, spin .5s linear 1;
 }
 
 .footerButton {
 	background-color: transparent;
 	border:none;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 100;
+	}
 }
 
 .footerButton:hover {
@@ -497,13 +515,14 @@ table {
 
 .tutorialWrapper {
 	height: 40vh;
-	width: 20vw;
+	width: clamp(300px ,30vw, 360px);
 	color:var(--background-text);
 	background: var(--card-gradient);
 	box-sizing: border-box;
 	padding: 1%;
 	border-radius: 8px;
 	position:relative;
+	animation: dropDown 1s ease-in-out  1  both;
 }
 
 .tutorial {
@@ -516,7 +535,7 @@ table {
 
 .tutorial h3 {
 	text-align: center;
-	font-size: 1vw;
+	font-size: clamp(12px, 1vw, 17px);
 	padding: 12px;
 	background-color: rgba(0, 0, 0, 0.459);
 	box-shadow: 3px 3px 5px 5px rgba(21, 1, 58, 0.459);
@@ -526,12 +545,42 @@ table {
 .closeHowTo {
 	position: absolute;
 	top: 5px;
-	background: rgba(255, 255, 255, 0.692);
+	left: 5%;
+	background: rgba(204, 204, 204, 0.692);
 	box-shadow: 3px 3px 5px 5px rgba(21, 1, 58, 0.459);
-	border-radius: 8px;
 	border:none;
+	color:rgb(0, 0, 0);
+	border-radius: 4px;
+	text-align: center;
 }
 
 .closeHowTo:hover {
 	cursor: pointer;
+}
+
+@media only screen and (max-width: 460px) {
+	.buttonContainer {
+		flex-direction: column;
+		padding: .5vh 0px;
+	}
+	.difficulty {
+		width: 100%;
+	}
+	.scoreWrapperMain {
+		display: grid;
+		width:100%;
+		grid-template-columns: repeat(2, 1fr);
+		grid-auto-rows: 1fr;
+		height:auto;
+	}
+	.scoreWrapperMain span:first-child {
+		grid-column: 1 / -1;
+	}
+	.scoreWrapperMain span{
+		padding: 8px 0px;
+		font-size: clamp(12px, 1.5vw, 20px);
+	}
+	.footer {
+		justify-content: center;
+	}
 }

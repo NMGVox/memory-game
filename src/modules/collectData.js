@@ -25,29 +25,30 @@ function collectData(diff) {
 }
 
 
-async function fetchAlbumInfo(selectedQueries) {
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': 'c78f458c76msh16d4ce41cccd8ddp17bd48jsn04deb672eb9d',
-        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com'
-      }
-    };
-    const covers = []
-    await Promise.all(selectedQueries.map(async (query) => {
-      try{
-        const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`;
-        const data = await fetch(url, options);
-        const result = await data.json();
-        covers.push(result.data[0].album);
-      }
-      catch (error) {
-        console.log(error.message);
-      }
-    }));
-    // setAlbumInfo(covers);
-    // setLoading(false);
-    return covers;
-  }
+async function fetchAlbumInfo(selectedQueries) {  
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': import.meta.env.VITE_API_DEEZER_KEY,
+      'X-RapidAPI-Host': import.meta.env.VITE_HOST_KEY,
+    }
+  };
+
+  const covers = []
+  await Promise.all(selectedQueries.map(async (query) => {
+    try{
+      const url = `https://deezerdevs-deezer.p.rapidapi.com/search?q=${query}`;
+      const data = await fetch(url, options);
+      const result = await data.json();
+      covers.push(result.data[0].album);
+    }
+    catch (error) {
+      console.log(error.message);
+    }
+  }));
+  // setAlbumInfo(covers);
+  // setLoading(false);
+  return covers;
+}
 
 export { collectData }

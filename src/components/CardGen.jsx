@@ -71,6 +71,7 @@ function CardGen({ musicData, gameLost, gameWon, gridSize }) {
       </div>
       
       <div style={{gridTemplateColumns: `${gridSize}`}} className="imageGrid">
+      {/* <div className="imageGrid">   */}
         {shuffleData.map((album) => (
           <button disabled={flipStatus !== 'normal' ? true : false} 
               onClick={(e) => cardClicked(e, album.id)} 
